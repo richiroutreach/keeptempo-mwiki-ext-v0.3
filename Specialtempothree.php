@@ -1,7 +1,7 @@
 <?php
-class SpecialTempoTwo extends SpecialPage {
+class Specialtempothree extends SpecialPage {
      function __construct() {
-          parent::__construct( 'Tempotwo' );
+          parent::__construct( 'tempothree' );
      }
  
      function execute( $par ) {
@@ -11,13 +11,13 @@ class SpecialTempoTwo extends SpecialPage {
           # Get request data from, e.g.
           $param = $request->getText( 'param' );
           # Do stuff
-          loadTempoTwoData();
+          loadtempothreeData();
      }
 }
 
-function loadTempoTwoData() {
+function loadtempothreeData() {
 
-     include 'projects.inc';
+     include 'modules/inc/projects.inc';
      $projects = array();
 
      //list out all the ppl
@@ -27,12 +27,12 @@ function loadTempoTwoData() {
      //   10219 => "Bob",
      //   9182 => "Nicole"
      // );
-     include 'ppl.inc';
+     include 'modules/inc/ppl.inc';
 
      global $mystring;
      $mypplkeys = array_keys($mypplnames);
 
-     include 'cred.inc';
+     include 'modules/inc/cred.inc';
 
      foreach ($mypplkeys as &$value) {
           $mystring .= '<user-id type="integer">' . $value . '</user-id>' . PHP_EOL;
@@ -105,7 +105,7 @@ function loadTempoTwoData() {
      global $wgOut;
 
      // css
-     $styleurl = "/extensions/Tempotwo/modules/tempostyles.css";
+     $styleurl = "/extensions/tempothree/modules/tempostyles.css";
      $wgOut->addHTML('<link type="text/css" rel="stylesheet" media="all" href="' . $styleurl . '" /><!-- dumb -->');
 
      //$wgOut->addHTML('<div style="background-color:pink">x</div>');
@@ -113,8 +113,8 @@ function loadTempoTwoData() {
 
      // foreach ($myprojects as $key => $value) {
      foreach ($mylistofkeys as $value) {
-          // outputTempoTwoProject($key,$value['project_id'],$value['retLast'],$value['retAmount'],$value['hours'],$value['report_id'],$value['month']);
-          outputTempoTwoProject(
+          // outputtempothreeProject($key,$value['project_id'],$value['retLast'],$value['retAmount'],$value['hours'],$value['report_id'],$value['month']);
+          outputtempothreeProject(
                $value,
                $myprojects[$value]['project_id'],
                $myprojects[$value]['retLast'],
@@ -131,8 +131,8 @@ function loadTempoTwoData() {
      $wgOut->addHTML("<h2>Hourly Projects</h2>");
 
      foreach ($hourlylist as $value) {
-          // outputTempoTwoProject($key,$value['project_id'],$value['retLast'],$value['retAmount'],$value['hours'],$value['report_id'],$value['month']);
-          outputTempoTwoProject(
+          // outputtempothreeProject($key,$value['project_id'],$value['retLast'],$value['retAmount'],$value['hours'],$value['report_id'],$value['month']);
+          outputtempothreeProject(
                $value,
                $myprojects[$value]['project_id'],
                $myprojects[$value]['retLast'],
@@ -147,7 +147,7 @@ function loadTempoTwoData() {
           );
      }
 
-     $wgOut->addHTML('To change the hours on this report, you need to edit the SpecialTempoTwo.php file.');
+     $wgOut->addHTML('To change the hours on this report, you need to edit the Specialtempothree.php file.');
 
 
      $wgOut->addHTML("<h2>People</h2>");
@@ -211,16 +211,16 @@ function loadTempoTwoData() {
 
      // draw teh thermometers
      // YO THIS NEEDS TO BE IT OWN FUNCTION TO RUN WHENEVER 
-     //  outputTempoTwoProject or  outputTempoTwoProjectIndividual is rung
+     //  outputtempothreeProject or outputtempothreeProjectIndividual is run
      $myi = 0;
      foreach ($myprojects as $key => $value) {
           $myi++;
           if($key !== false) {
                if (array_key_exists('nicoleHours', $value)) {
                     //$wgOut->addHTML('AGAIN nPort is ' . $nPortion . ' and nHours is ' . $nHours . '!<br>x<br>x<br><hr>');
-                    drawTempotwoTherms($value['retAmount'], $value['project_id'], $value['hours'], $key,$value['nicolePortion'],$value['nicoleHours'],$myi );
+                    drawtempothreeTherms($value['retAmount'], $value['project_id'], $value['hours'], $key,$value['nicolePortion'],$value['nicoleHours'],$myi );
                }else{
-                    drawTempotwoTherms($value['retAmount'], $value['project_id'], $value['hours'], $key,0,0,$myi);
+                    drawtempothreeTherms($value['retAmount'], $value['project_id'], $value['hours'], $key,0,0,$myi);
                }
           }
      }
@@ -235,7 +235,7 @@ function loadTempoTwoData() {
      }
      $wgOut->addHTML("</div><!-- .personentry -->");
      $wgOut->addHTML("<h2>Note</h2>");
-     $wgOut->addHTML('To change the hours on this report, you need to edit the SpecialTempotwo.php file.');
+     $wgOut->addHTML('To change the hours on this report, you need to edit the Specialtempothree.php file.');
      $wgOut->addHTML("<h2>Nicole</h2>");
      foreach ($mylistofkeys as $value) {
           switch($value){
@@ -248,7 +248,7 @@ function loadTempoTwoData() {
                          $wgOut->addHTML("<p>Nicole should not have more than " . $nicole . ".</p>");
                          $justNicoleHours = $myprojects[$value]['nicoleHours'];
                          $wgOut->addHTML("<p>Nicole has " . $justNicoleHours . ".</p>");
-                         outputTempotwoProjectIndividual(
+                         outputtempothreeProjectIndividual(
                               $value,
                               $myprojects[$value]['project_id'],
                               $nicole,
@@ -273,16 +273,16 @@ function loadTempoTwoData() {
 
 
 }
-//end loadTempoTwoData()
+//end loadtempothreeData()
 
-function outputTempoTwoProject($key, $project_id, $retLast, $retAmount, $hours, $mtd_rept, $month, $longname,$firstlead,$secondlead) {
+function outputtempothreeProject($key, $project_id, $retLast, $retAmount, $hours, $mtd_rept, $month, $longname,$firstlead,$secondlead) {
      global $wgOut;
      global $jjrcounter;
      $jjrcounter++;
-     include 'cred.inc'; // has the slug we need
-     include 'firstcol.inc'; // has string with html
-     include 'hourscol.inc'; // has string with html
-     include 'leftcol.inc'; // has string with html
+     include 'modules/inc/cred.inc'; // has the slug we need
+     include 'modules/inc/firstcol.inc'; // has string with html
+     include 'modules/inc/hourscol.inc'; // has string with html
+     include 'modules/inc/leftcol.inc'; // has string with html
      //if ($nPortion > 0) {
      //     $nChunk = '<div id="nportion">N' . $nPortion . '</div>';
      //} else {
@@ -300,14 +300,14 @@ function outputTempoTwoProject($key, $project_id, $retLast, $retAmount, $hours, 
                     '<div style="clear:both"></div>');
 }
 
-function outputTempotwoProjectIndividual($key, $project_id, $retAmount, $hours, $month, $longname,$firstlead,$secondlead) {
+function outputtempothreeIndividual($key, $project_id, $retAmount, $hours, $month, $longname,$firstlead,$secondlead) {
      global $wgOut;
      global $jjrcounter;
      $jjrcounter++;
-     include 'cred.inc'; // has the slug we need
-     include 'firstcol.inc'; // has string with html
-     include 'hourscol.inc'; // has string with html
-     include 'leftcol.inc'; // has string with html
+     include 'modules/inc/cred.inc'; // has the slug we need
+     include 'modules/inc/firstcol.inc'; // has string with html
+     include 'modules/inc/hourscol.inc'; // has string with html
+     include 'modules/inc/leftcol.inc'; // has string with html
      $month = '<span id="whatmonth">(' . strtolower($month) . ')</span>';
      $wgOut->addHTML(
           '<div id="' . $key . '">' . $firstcol . $leftcol . '
@@ -321,23 +321,23 @@ function outputTempotwoProjectIndividual($key, $project_id, $retAmount, $hours, 
      );
 }
 
-/* drawTempotwoTherms() */
-function drawTempotwoTherms($retAmount,$project_id,$hours,$name,$nPortion,$nHours,$count) {
+/* drawtempothreeTherms() */
+function drawtempothreeTherms($retAmount,$project_id,$hours,$name,$nPortion,$nHours,$count) {
      global $wgOut;
 
      if (($nPortion == 0)&&($nHours == 0)) {
           $wgOut->addHTML('<script>$(document).ready(function() {');
-          calcTempotwoBar($retAmount, $project_id, $hours,$name,0,0,$count);
+          calctempothreeBar($retAmount, $project_id, $hours,$name,0,0,$count);
           $wgOut->addHTML('});</script>');
      } else {
           $wgOut->addHTML('<!-- flag --><script>$(document).ready(function() {');
-          calcTempotwoBar($retAmount, $project_id, $hours,$name,$nPortion,$nHours,$count);
+          calctempothreeBar($retAmount, $project_id, $hours,$name,$nPortion,$nHours,$count);
           $wgOut->addHTML('});</script>');
      }
 }
 
-/* calcTempotwoBar() */
-function calcTempotwoBar($retAmount, $project_id, $hours,$name,$nPortion,$nHours,$count) {
+/* calctempothreeBar() */
+function calctempothreeBar($retAmount, $project_id, $hours,$name,$nPortion,$nHours,$count) {
      global $wgOut;
 
      // $hours = $myprojects[$key];
