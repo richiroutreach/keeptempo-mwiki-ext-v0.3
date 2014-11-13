@@ -12,5 +12,5 @@ $specialPageAliases = array();
  * @author <your username>
  */
 $specialPageAliases[ 'en' ] = array(
-        'Tempotwo' => array( 'Tempotwo', 'Tempotwo' ),
+        'tempothree' => array( 'tempothree', 'tempothree' ),
 );

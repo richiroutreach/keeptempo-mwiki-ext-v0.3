@@ -9,7 +9,7 @@ EOT;
  
 $wgExtensionCredits[ 'specialpage' ][] = array(
         'path' => __FILE__,
-        'name' => 'tempothree',
+        'name' => "tempo3",
         'author' => 'Richir Outreach',
         'url' => 'http://www.reddit.com',
         'description' => 'amazing',
@@ -18,11 +18,11 @@ $wgExtensionCredits[ 'specialpage' ][] = array(
  
 $wgAutoloadClasses[ 'Specialtempothree' ] = __DIR__ . '/Specialtempothree.php'; # Location of the SpecialMyExtension class (Tell MediaWiki to load this file)
 $wgExtensionMessagesFiles[ 'tempothree' ] = __DIR__ . '/tempothree.i18n.php'; # Location of a messages file (Tell MediaWiki to load this file)
-$wgExtensionMessagesFiles[ 'TempothreeAlias' ] = __DIR__ . '/tempothree.alias.php'; # Location of an aliases file (Tell MediaWiki to load this file)
-$wgSpecialPages[ 'Tempothree' ] = 'SpecialTempothree'; # Tell MediaWiki about the new special page and its class name
-$wgSpecialPageGroups[ 'Tempothree' ] = 'other';
+$wgExtensionMessagesFiles[ 'tempothreeAlias' ] = __DIR__ . '/tempothree.alias.php'; # Location of an aliases file (Tell MediaWiki to load this file)
+$wgSpecialPages[ 'tempothree' ] = 'Specialtempothree'; # Tell MediaWiki about the new special page and its class name
+$wgSpecialPageGroups[ 'tempothree' ] = 'other';
 
-$wgResourceModules['Tempothree'] = array(
+$wgResourceModules['tempothree'] = array(
 	'localBasePath'=>__DIR__,
 	'styles'=>'/modules/tempostyles.css',
 );

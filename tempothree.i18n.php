@@ -11,14 +11,14 @@ $messages = array();
  * @author <your username>
  */
 $messages[ 'en' ] = array(
-        'tempotwo' => "Tempotwo", // Important! This is the string that appears on Special:SpecialPages
-        'tempotwo-desc' => "Tempotwo Integrates Tempo API",
+        'tempothree' => "tempothree", // Important! This is the string that appears on Special:SpecialPages
+        'tempothree-desc' => "tempothree Integrates Tempo API",
 );
  
 /** Message documentation
  * @author <your username>
  */
 $messages[ 'qqq' ] = array(
-        'tempotwo' => "Tempotwo",
-        'tempotwo-desc' => "Tempotwo Integrates Tempo API",
+        'tempothree' => "Tempo",
+        'tempothree-desc' => "Tempo Integrates Tempo API",
 );

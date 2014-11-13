@@ -248,7 +248,7 @@ function loadtempothreeData() {
                          $wgOut->addHTML("<p>Nicole should not have more than " . $nicole . ".</p>");
                          $justNicoleHours = $myprojects[$value]['nicoleHours'];
                          $wgOut->addHTML("<p>Nicole has " . $justNicoleHours . ".</p>");
-                         outputtempothreeProjectIndividual(
+                         outputtempothreeIndividual(
                               $value,
                               $myprojects[$value]['project_id'],
                               $nicole,
